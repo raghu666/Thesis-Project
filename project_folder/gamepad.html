@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/787F2ADD-D7E8-CF49-9835-D44E8E6FFEA8/main.js" charset="UTF-8"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/andreasplesch/aframe-meshline-component/master/dist/aframe-meshline-component.min.js"></script>
+    <script src="aframe-gamepad-controls-master/aframe-gamepad-controls-master/dist/aframe-gamepad-controls.js"></script>
+  <style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; background-color: white;}
+   
+  </style>
+</head>
+<body>
+    <a-scene>
+      <!-- Camera with customized cursor -->
+      <a-light color="#da47da" position="0 5 0" type="ambient"></a-light>
+    	<a-entity camera gamepad-controls wasd-controls look-controls id="cam">
+        <a-entity position="0 0 -0.5"
+                  geometry="primitive: ring; radiusOuter: 0.01; radiusInner: 0.007;"
+                  material="color: black; shader: flat;"
+                  cursor="maxDistance: 500; fuse: true; timeout: 5000">
+            </a-entity>
+      </a-entity> 
+    	<a-entity light="type: directional; color: #FFF; intensity: 0.5" position="0 3 0"> </a-entity>
+        
+            <a-entity geometry="primitive: plane; height: 2; width: 2.5;" scale="1 1 1" position="0 0 -10" id="test" visible="true" material="shader:flat; src:details.png; opacity:0.8">
+            </a-entity>
+        <a-entity geometry="primitive: plane; height: 2; width: 2.5;" scale="1 1 1" position="-5 0 -10" id="test1" visible="false" material="shader:flat; src:details.png; opacity:0.8">
+            </a-entity>
+      <!-- Sky -->
+      <a-sky color="#c6bbbb"> </a-sky>
+    </a-scene>
+</body>
+<script>
+    var test = document.querySelector('#test')
+    var test1 = document.querySelector('#test1')
+        var cam = document.querySelector('#cam')
+
+    test.addEventListener('click',function(){
+        console.log("clicked this you idiot")
+        console.log = function() {}
+        test1.setAttribute('visible','true')
+        cam.setAttribute('position','0 0 0')
+    })
+    
+    test.addEventListener('mouseleave',function(){
+        test1.setAttribute('visible','false')
+    })
+    
+    
+    
+</script>

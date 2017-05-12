@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/787F2ADD-D7E8-CF49-9835-D44E8E6FFEA8/main.js" charset="UTF-8"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; background-color: white;}
+   
+  </style>
+</head>
+
+<body>
+  <a-scene>
+      <!-- Camera with customized cursor -->
+      <a-light color="#da47da" position="0 5 0" type="ambient"></a-light>
+    	<a-entity camera look-controls wasd-controls>
+        <a-entity position="0 0 -12"
+                geometry="primitive: ring; radiusOuter: 0.30;
+                          radiusInner: 0.20;"
+                material="color: cyan; shader: flat"
+                cursor="maxDistance: 30; fuse: true">
+            </a-entity>
+        </a-entity>
+    	<a-entity light="type: point; color: #EEE; intensity: 0.5" position="0 3 0"></a-entity>
+      <!-- Sky -->
+      <a-sky color="rgba(209, 210, 255, 0.67)"></a-sky>
+  </a-scene>
+  <script>
+      
+      
+      // create global empty object to access inside csv function
+   //   var bank_dur = {};
+      
+      
+      // Loading csv file and converting it into array of objects with proper data-type ***  IMPORTANT: Asynchronous method first above then third call and second function itself executes ****
+      
+      d3.csv("/bank-additional-full.csv", function(data){
+          data.forEach(function(d) {
+              d.age = +d.age,
+              d.campaign = +d.campaign,
+              d["cons.conf.idx"] = +d["cons.conf.idx"],
+              d["cons.price.idx"] = +d["cons.price.idx"],
+              d.contact = d.contact,
+              d.day_of_week = d.day_of_week,
+              d.default = d.default,
+              d.duration = +d.duration,
+              d.education = d.education,
+              d["emp.var.rate"] = +d["emp.var.rate"],
+              d.euribor3m = +d.euribor3m,
+              d.housing = d.housing,
+              d.job = d.job,
+              d.loan = d.loan,
+              d.marital = d.marital,
+              d.month = d.month,
+              d["nr.employed"] = +d["nr.employed"],
+              d.pdays = +d.pdays,
+              d.poutcome = d.poutcome,
+              d.previous = +d.previous,
+              d.y = d.y
+          });
+       //   console.log (data[0]);
+          getloadeddata(data);
+      });
+      
+      var bank_dur;
+      
+      function getloadeddata(data){
+          
+          // console.log (data[0]);
+          
+          //Group / Nest the data in terms of duration attribute
+     
+        bank_dur = d3.nest()
+            .key(function(d) { return d.duration; }) .sortKeys(d3.ascending)
+            .entries(data);
+    
+          //   scale for y axis input domain and output range
+      
+        var hscale = d3.scaleLinear();
+        hscale.domain([0, 999])
+   	          .range([1, 50]) 
+    
+  //  select scene object like svg
+    
+        var scene = d3.select("a-scene")
+    
+      // Display spheres for the grouped duration attributes
+    
+        var aspheres = scene.selectAll("a-sphere")   
+              
+        for (var j =0; j < bank_dur.length ; j++){
+            bank_dur[j].key = +bank_dur[j].key;    
+        }
+          
+          aspheres.data(bank_dur).enter().append("a-sphere")
+                    .attr( "position" ,function(d,i) {
+               //   var total = Object.keys(d).length; //total size of the array
+              var total = Object.keys(bank_dur).length;
+              console.log(total);
+                        var y = 0;
+                        var rads = 5;
+                  //      var angle = i * (360/total);
+                        var angle = i/total;
+                if(i>500 && i < 1000){
+                        y=1;
+                }
+                    else if (i >1000){
+                        y=2;
+                    }
+                        var x = rads * Math.cos(angle * Math.PI * 2);
+                        var z = rads * Math.sin(angle * Math.PI * 2);
+                        return x + " " + y + " " + z ;     
+                    })
+                .attr( "radius" , function (d) { 
+                      return 0.05; 
+                    })          
+               .attr( "color" , function(d,i) { 
+                    var totals = Object.keys(bank_dur).length;       
+              return 0.6 + (i/totals) * 0.4;
+                    }); 
+      } 
+      
+      
+   
+
+
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      /* Pseudo code for plotting points in a circle
+      
+      //x0, y0 - center's coordinates
+for(i = 1 to n)
+{
+    angle = i * (360/n);
+    point.x = x0 + r * cos(angle);
+    point.y = y0 + r * sin(angle);
+}
+      */
+      
+      
+      
+      
+      
+    
+    // fake data
+   /* var data = [ 10, 20, 30, 15, 25, 35, 40,
+                45, 50, 70, 100, 120, 130,
+               12, 18, 22, 29, 33, 44, 59, 200]
+    
+    // we scale the height of our bars using d3's linear scale
+    var hscale = d3.scale.linear()
+    	.domain([0, d3.max(data)])
+    	.range([0, 3])
+    
+    // we select the scene object just like an svg
+    var scene = d3.select("a-scene")
+    
+    // we use d3's enter/update/exit pattern to draw and bind our dom elements
+    var bars = scene.selectAll("a-cube.bar").data(data)
+    bars.enter().append("a-cube").classed("bar", true)
+    // we set attributes on our cubes to determine how they are rendered
+    bars.attr({
+      position: function(d,i) {
+        // cubes are positioned by their center so we
+        // offset for their height
+        var y = 1 + hscale(d)/2;
+        // lets place the bars all around our camera
+        var radius = 5;
+        //var x = i - data.length/2;
+        var x = radius * Math.cos(i/data.length * 2 * Math.PI)
+        var z = radius * Math.sin(i/data.length * 2 * Math.PI)
+        return x + " " + y + " " + z
+      },
+      rotation: function(d,i) {
+        var x = 0;
+        var z = 0;
+        var y = -(i/data.length)*360;
+        return x + " " + y + " " + z
+      },
+      width: function(d) { return 0.5},
+      depth: function(d) { return 0.9},
+      height: function(d) { return hscale(d)},
+      opacity: function(d,i) { return 0.6 + (i/data.length) * 0.4},
+      //metalness: function(d,i) { return i/data.length}
+    })
+    .on("click", function(d,i) {
+      console.log("click", i,d)
+    })
+    .on("mouseenter", function(d,i) {
+      // this event gets fired continuously as long as the cursor
+      // is over the element. we only want trigger our animation the first time
+      if(this.hovering) return;
+      console.log("hover", i,d)
+      this.hovering = true;
+      d3.select(this).transition().duration(1000)
+      .attr({
+        metalness: 0.5,
+        width: 2
+      })
+    })
+    .on("mouseleave", function(d,i) {
+      console.log("leave",i,d)
+      this.hovering = false;
+      d3.select(this).transition()
+      .attr({
+        metalness: 0,
+        width: 0.5
+      })
+    })    
+    */
+  </script>
+</body>

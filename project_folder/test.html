@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/787F2ADD-D7E8-CF49-9835-D44E8E6FFEA8/main.js" charset="UTF-8"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/andreasplesch/aframe-meshline-component/master/dist/aframe-meshline-component.min.js"></script>
+  <style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; background-color: white;}
+   
+  </style>
+</head>
+
+<body>
+  <a-scene>
+      <!-- Camera with customized cursor -->
+      <a-light color="#da47da" position="0 5 0" type="ambient"></a-light>
+    	<a-entity camera look-controls wasd-controls>
+        <a-entity position="0 0 -12"
+                geometry="primitive: ring; radiusOuter: 0.15;
+                          radiusInner: 0.10;"
+                material="color: cyan; shader: flat"
+                cursor="maxDistance: 10; fuse: true">
+            </a-entity>
+        </a-entity>
+    <!-- <a-entity meshline="lineWidth: 10; path: -2 -1 0, 0 -2 0, 2 -1; color: #E20049"></a-entity> -->
+    <a-entity meshline="lineWidth: 10; path: -2 2 4, 2 2 4; color: #000"></a-entity> 
+      <!-- Sky -->
+      <a-sky color="rgba(209, 210, 255, 0.67)"></a-sky>
+      <a-assets>
+          <a-asset-item id="test_cube_1544" src="Cube_test_1544_static_layout_1.obj"></a-asset-item>
+          <a-asset-item id="test_mtl" src="Cube_test_1544_static_layout_1.mtl"></a-asset-item>    
+      </a-assets>
+      
+      <a-entity obj-model="obj : #test_cube_1544; mtl: #test_mtl"></a-entity>
+  </a-scene>
+    
+</body>

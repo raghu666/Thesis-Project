@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/787F2ADD-D7E8-CF49-9835-D44E8E6FFEA8/main.js" charset="UTF-8"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; background-color: white;}
+   
+  </style>
+</head>
+
+<body>
+  <a-scene>
+      <!-- Camera with customized cursor -->
+      <a-light color="#da47da" position="0 5 0" type="ambient"></a-light>
+    	<a-entity camera look-controls wasd-controls>
+        <a-entity position="0 0 -12"
+                geometry="primitive: ring; radiusOuter: 0.15;
+                          radiusInner: 0.10;"
+                material="color: cyan; shader: flat"
+                cursor="maxDistance: 10; fuse: true">
+            </a-entity>
+        </a-entity>
+      <!-- Sky -->
+      <a-sky color="rgba(209, 210, 255, 0.67)"></a-sky>
+  </a-scene>
+    <script>
+    Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
+function unpack(rows, key) {
+	return rows.map(function(row)
+	{ return row[key]; });}
+
+var trace1 = {
+	x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
+	mode: 'markers',
+	marker: {
+		size: 12,
+		line: {
+		color: 'rgba(217, 217, 217, 0.14)',
+		width: 0.5},
+		opacity: 0.8},
+	type: 'scatter3d'
+};
+
+var trace2 = {
+	x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
+	mode: 'markers',
+	marker: {
+		color: 'rgb(127, 127, 127)',
+		size: 12,
+		symbol: 'circle',
+		line: {
+		color: 'rgb(204, 204, 204)',
+		width: 1},
+		opacity: 0.8},
+	type: 'scatter3d'};
+
+var data = [trace1, trace2];
+var layout = {margin: {
+	l: 0,
+	r: 0,
+	b: 0,
+	t: 0
+  }};
+Plotly.newPlot('myDiv', data, layout);
+});
+    
+    
+    </script>
+</body>

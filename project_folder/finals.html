@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/787F2ADD-D7E8-CF49-9835-D44E8E6FFEA8/main.js" charset="UTF-8"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://rawgit.com/andreasplesch/aframe-meshline-component/master/dist/aframe-meshline-component.min.js"></script>
+  <style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; background-color: white;}
+   
+  </style>
+</head>
+
+<body>
+  <a-scene>
+      <!-- Camera with customized cursor -->
+      <a-light color="#FFF" position="0 5 0" type="ambient"></a-light>
+    	<a-entity camera look-controls wasd-controls>
+        <a-entity position="0 0 -12"
+                geometry="primitive: ring; radiusOuter: 0.15;
+                          radiusInner: 0.10;"
+                material="color: black; shader: flat"
+                cursor="maxDistance: 30; fuse: true">
+            </a-entity>
+        </a-entity>
+    	<a-entity light="type: directional; color: #FFF; intensity: 0.5" position="0 3 0"> </a-entity>
+      <!-- Sky -->
+      <a-sky color="#695c5c"> </a-sky>
+
+<!--  Makes the entity fully transparent. only possible with Material attribute's component visible equals False -->
+
+    <a-entity id="main" geometry="primitive : box; depth : 8; height : 8; width : 8" position="-12 -1 -8" scale="0.5 0.5 0.5" material="visible : false;">
+        <a-entity  text="value : Age; align : center; width : 70; color: #000; font:roboto; side : double" position="9 -3 -8"></a-entity>
+        <a-entity  text="value : Duration; align : center; width : 70; color: #000; font:roboto; side : double" position="-11 10 -8" rotation="0 20 90"></a-entity> 
+        <a-entity  text="value : Months; align : center; width : 70; color: #000; font:roboto; side : double" position="-8 -3 12" rotation="0 90 0"></a-entity>
+        <!-- For z tick marks -->
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 -7.5, -8 -7 -7.5; color : #000">
+            <a-entity  text="value : April; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 -6.7" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 -4.056, -8 -7 -4.056; color : #000">
+            <a-entity  text="value : August; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 -2.9" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 -0.612, -8 -7 -0.612; color : #000">
+            <a-entity  text="value : December; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 0.8" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 2.832, -8 -7 2.832; color : #000">
+            <a-entity  text="value : July; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 3.5" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 6.276, -8 -7 6.276; color : #000">
+            <a-entity  text="value : June; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 7" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 9.72, -8 -7 9.72; color : #000">
+            <a-entity  text="value : March; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 10.6" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 13.164, -8 -7 13.164; color : #000">
+            <a-entity  text="value : May; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 13.8" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 16.608, -8 -7 16.608; color : #000">
+            <a-entity  text="value : November; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 18" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 20.052, -8 -7 20.052; color : #000">
+            <a-entity  text="value : October; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 21.2" rotation="0 90 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -9 23.496, -8 -7 23.496; color : #000">
+            <a-entity  text="value : September; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 25" rotation="0 90 0"></a-entity>
+        </a-entity>
+
+        <!-- For x tick marks -->
+        <a-entity  meshline="lineWidth : 5; path : -7.5 -9 -8, -7.5 -7 -8; color : #000">
+            <a-entity  text="value : 18; align : center; width : 12; color: #000; font:roboto; side : double" position="-7 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -4.056 -9 -8, -4.056 -7 -8; color : #000">
+            <a-entity  text="value : 26; align : center; width : 12; color: #000; font:roboto; side : double" position="-3.5 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -0.612 -9 -8, -0.612 -7 -8; color : #000">
+            <a-entity  text="value : 34; align : center; width : 12; color: #000; font:roboto; side : double" position="-0.1 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : 2.832 -9 -8, 2.832 -7 -8; color : #000">
+            <a-entity  text="value : 42; align : center; width : 12; color: #000; font:roboto; side : double" position="3.3 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : 6.276 -9 -8, 6.276 -7 -8; color : #000">
+            <a-entity  text="value : 50; align : center; width : 12; color: #000; font:roboto; side : double" position="6.8 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : 9.72 -9 -8, 9.72 -7 -8; color : #000">
+            <a-entity  text="value : 58; align : center; width : 12; color: #000; font:roboto; side : double" position="10.2 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : 13.164 -9 -8, 13.164 -7 -8; color : #000">
+            <a-entity  text="value : 64; align : center; width : 12; color: #000; font:roboto; side : double" position="13.7 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : 16.608 -9 -8, 16.608 -7 -8; color : #000">
+            <a-entity  text="value : 72; align : center; width : 12; color: #000; font:roboto; side : double" position="17.1 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : 20.052 -9 -8, 20.052 -7 -8; color : #000">
+            <a-entity  text="value : 80; align : center; width : 12; color: #000; font:roboto; side : double" position="20.5 -7.5 -8"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : 23.496 -9 -8, 23.496 -7 -8; color : #000">
+            <a-entity  text="value : 88; align : center; width : 12; color: #000; font:roboto; side : double" position="24 -7.5 -8"></a-entity>
+        </a-entity>
+          <!-- For y tick marks -->
+        <a-entity  meshline="lineWidth : 5; path : -8 -7 -8, -7 -7 -8; color : #000">
+            <a-entity  text="value : 0; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 -6.5 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 -4.056 -8, -7 -4.056 -8; color : #000">
+            <a-entity  text="value : 405; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 -3.5 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+         <a-entity  meshline="lineWidth : 5; path : -8 -0.612 -8, -7 -0.612 -8; color : #000">
+            <a-entity  text="value : 810; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 -0.2 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 2.832 -8, -7 2.832 -8; color : #000">
+            <a-entity  text="value : 1215; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 3.2 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+         <a-entity  meshline="lineWidth : 5; path : -8 6.276 -8, -7 6.276 -8; color : #000">
+            <a-entity  text="value : 1620; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 6.7 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 9.72 -8, -7 9.72 -8; color : #000">
+            <a-entity  text="value : 2025; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 10.2 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 13.164 -8, -7 13.164 -8; color : #000">
+            <a-entity  text="value : 2430; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 13.5 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+         <a-entity  meshline="lineWidth : 5; path : -8 16.608 -8, -7 16.608 -8; color : #000">
+            <a-entity  text="value : 2835; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 17 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 20.052 -8, -7 20.052 -8; color : #000">
+            <a-entity  text="value : 3240; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 20.5 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+        <a-entity  meshline="lineWidth : 5; path : -8 23.496 -8, -7 23.496 -8; color : #000">
+            <a-entity  text="value : 3645; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 23.9 -8" rotation="0 45 0"></a-entity>
+        </a-entity>
+
+      </a-entity> <a-entity geometry="primitive : plane; width : 8; height : 6; side : double" material="shader : flat;src :legs1.jpg" position="0 0 -15"></a-entity>
+   
+   <!--   <a-entity geometry="primitive: plane; height: 2; width: 2" text="value : Hello World; align : center; width : 8"></a-entity>   -->
+    </a-scene>
+  <script>
+      
+       // To get DOM attribute of aframe elements in javascript --> document.getElementById("main").getDOMAttribute('geometry').width;
+
+      var ewidth = document.getElementById("main").getDOMAttribute('geometry').width;
+      
+      //  console.log(ewidth);
+      
+      // Set up x value, scale, map and its axis
+    /*  var xvalue = function(d){  return d.age; },
+          xscale = d3.scaleLinear().domain(d3.min(xvalue),d3.max(xvalue)).range([0,ewidth]),
+          xmap = function(d){ return xscale(xvalue(d)); },
+          xaxis = d3.axisBottom().scale(xscale);                            // d3 v4 axis changed
+  
+  
+      // Set up y value, scale, map and its axis
+      var yvalue = function(d){  return d.age; },
+          yscale = d3.scaleLinear().range([0,ewidth]),
+          ymap = function(d){ return yscale(yvalue(d)); },
+          yaxis = d3.axisLeft().scale(yscale);
+      
+      // Set up z value, scale, map and its axis
+      var zvalue = function(d){  return d.euro; },
+          zscale = d3.scaleLinear().range([0,ewidth]),
+          zmap = function(d){ return zscale(zvalue(d)); },
+          zaxis = d3.axisBottom().scale(zscale);    
+      */
+      
+      // Accessing the main DOM entity which acts as a placeholder for the three axes. Giant Invisible box with predefined width, height and depth.
+          
+         var entity = d3.select("a-scene").select("#main");
+      
+      //Padding for x y and z axis
+        var padding = -7.5;
+      
+      //convert csv to array for months(string)
+        var months = [];
+      
+      //tooltip mouseover
+   /*   var tooltip = entity.append("a-entity")
+                          .attr("class", "tooltip")
+                          .attr("geometry","primitive: plane; height: 2; width: 2")
+                          .attr("material","side : double")
+                          .style("opacity", 0);
+
+      */
+      
+      
+      // Loading csv file and converting it into array of objects with proper data-type ***  IMPORTANT: Asynchronous method first above then third call and second function itself executes OR just put the entire logic code inside this function ****
+      
+      
+      d3.csv("bank-additional.csv", function(error, data){
+          data.forEach(function(d) {
+              d.age = parseInt(d.age);
+              d.campaign = +d.campaign;
+              d["cons.conf.idx"] = +d["cons.conf.idx"];
+              d["cons.price.idx"] = +d["cons.price.idx"];
+              d.duration = +d.duration;
+              d["emp.var.rate"] = +d["emp.var.rate"];
+              d.euribor3m = +d.euribor3m;
+              d["nr.employed"] = +d["nr.employed"];
+              d.pdays = +d.pdays;
+              d.previous = +d.previous;
+              
+           //   console.log(d);
+              months.push(d.month);
+              months.sort();
+          });
+          
+          // x scale age variable
+          var xscale = d3.scaleLinear()
+                         .domain([d3.min(data, function(d) { return d.age; }),d3.max(data, function(d) { return d.age; })])
+                         .range([padding , (2 * ewidth)-padding]);
+          
+          
+          
+          // y scale duration variable
+          var yscale = d3.scaleLinear()
+                         .domain([d3.max(data, function(d) { return d.duration; }),d3.min(data, function(d) { return d.duration; })])
+                         .range([(2 * ewidth)-padding , padding]);
+          
+          
+          
+          // z scale months variable
+          var zscale = d3.scalePoint()
+                         .domain(months)
+                         .range([padding , (2 * ewidth)-padding]);
+          
+          
+          // radius campaign variable
+          
+   /*      var color =d3.scaleSequential()
+                       .domain([d3.min(data, function(d) { return d.campaign; }),d3.max(data,function(d){ return d.campaign; })])
+                       .interpolator(d3.interpolateRainbow);
+    
+    */
+          var rads = d3.scaleLinear()
+                       .domain([d3.min(data, function(d) { return d.campaign; }),d3.max(data,function(d){ return d.campaign; })])
+                       .range([0.1,0.5])
+          
+          // color job variable
+             var color = d3.scaleOrdinal(d3.schemePaired);
+          
+          
+        //  console.log(xscale(18)); 
+          
+        //  console.log(zscale.step());
+          
+        //  console.log(yscale(3643));
+          
+        //  console.log(color(15));
+          
+          // x-axis  2 * ewidth = 16 units for axis line. for the empty placeholder its a bit different
+       
+          entity.append("a-entity")
+                .attr("meshline","path : -"+ewidth+" -8 -8, "+ ewidth*3 +" -8 -8; lineWidth : 5; color : #000;");
+       //         .call(xaxis);     
+          
+          // y-axis
+          
+          entity.append("a-entity")
+                .attr("meshline","path : -8 -"+ewidth+" -8,-8 "+ ewidth*3 +" -8; lineWidth : 5; color : #000;");
+          
+          
+          // z-axis 
+          
+          entity.append("a-entity")
+                .attr("meshline","path : -8 -8 -"+ewidth+",-8 -8 "+ ewidth*3+"; lineWidth : 5; color : #000;");
+         
+       
+          // spheres for the data itself
+          
+          var spheres =    entity.selectAll("a-sphere")
+                .data(data)
+                .enter().append("a-sphere")
+                .attr("position", function(d,i){
+                var x = xscale(d.age);
+                var y = yscale(d.duration);
+                var z = zscale(months[i]);
+                
+                return x +" "+ y +" "+ z;
+            })
+                .attr("geometry","segmentsHeight : 15; segmentsWidth : 15")
+                .attr("material",function(d){
+          //      var cat = color(d.campaign);
+              //  var cat = color(d.job);
+              //  return "color :" + cat;
+                      if(d.y ==="yes"){
+                   return "color : #ff4c4c";
+              }
+              else if(d.y === "no"){
+                  return "color : #7d5dff";
+              } 
+            })
+                .attr("radius",function(d){
+                    return rads(d.campaign);
+            })
+            /*  .transition()                         // Animation for the term deposit YES
+                .duration(1000)
+                .ease(d3.easeElasticInOut)
+                .on("start", function repeat() {
+                          d3.active(this)
+                            .attr("scale", function(d){
+                              if(d.y === "yes")
+                                  return "1.2 1.2 1.2";
+                          })
+                            .transition().ease(d3.easeElasticInOut)
+                            .attr("scale", function(d){
+                              if(d.y === "yes")
+                                  return "1 1 1";})
+                            .transition().ease(d3.easeElasticInOut)
+                            .on("start", repeat);
+            });
+            
+            
+       
+          /*  .on("mouseover",function(d){
+                    
+                tooltip.transition()
+                       .duration(200)
+                       .style("opacity", 0)
+                       .attr("text","value :"+)
+                
+                
+            })
+     */
+          
+          
+          
+          
+          
+          
+      });
+  </script>
+</body>
