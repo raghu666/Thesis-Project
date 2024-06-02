@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/787F2ADD-D7E8-CF49-9835-D44E8E6FFEA8/main.js" charset="UTF-8"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <style>
@@ -35,7 +34,7 @@
       
       // Loading csv file and converting it into array of objects with proper data-type ***  IMPORTANT: Asynchronous method first above then third call and second function itself executes ****
       
-      d3.csv("/bank-additional-full.csv", function(data){
+      d3.csv("./data/bank-additional-full.csv", function(data){
           data.forEach(function(d) {
               d.age = +d.age,
               d.campaign = +d.campaign,
