@@ -34,7 +34,7 @@
       
       // Loading csv file and converting it into array of objects with proper data-type ***  IMPORTANT: Asynchronous method first above then third call and second function itself executes ****
       
-      d3.csv("./data/bank-additional-full.csv", function(data){
+      d3.csv("../data/bank-additional-full.csv", function(data){
           data.forEach(function(d) {
               d.age = +d.age,
               d.campaign = +d.campaign,
