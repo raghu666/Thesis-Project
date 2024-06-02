@@ -468,19 +468,11 @@
                   }
               
              if(gp.buttons[1].pressed == true && status == true){
-                  toggle.setAttribute('visible','false');
-                 marital.setAttribute('visible','false');
-                 edu.setAttribute('visible','false');
-                 jobtype.setAttribute('visible','false');
-
-                  status = false;
+                toggleDataAttributes('false');
+                status = false;
               } else if(gp.buttons[1].pressed == true && status == false){
-                  toggle.setAttribute('visible','true');
-                 marital.setAttribute('visible','true');
-                 edu.setAttribute('visible','true');
-                 jobtype.setAttribute('visible','true');
-                  
-                  status = true;
+                toggleDataAttributes('true');
+                status = true;
               } 
              
           });
@@ -500,25 +492,23 @@
           function down(e){
                  
               if(e.keyCode=="104" || e.keyCode == "72" && status == true){
-                 toggle.setAttribute('visible','false');
-                 marital.setAttribute('visible','false');
-                 edu.setAttribute('visible','false');
-                 jobtype.setAttribute('visible','false');
-                  
-                  status = false;
+                toggleDataAttributes('false');
+                status = false;
               }
               else if(e.keyCode=="104" || e.keyCode == "72" && status == false){
-                 toggle.setAttribute('visible','true');
-                 marital.setAttribute('visible','true');
-                 edu.setAttribute('visible','true');
-                 jobtype.setAttribute('visible','true');
-                  
-                  status = true;
+                toggleDataAttributes('true');
+                status = true;
               }
+          }
+
+          function toggleDataAttributes(value){
+            toggle.setAttribute('visible', value);
+            marital.setAttribute('visible', value);
+            edu.setAttribute('visible', value);
+            jobtype.setAttribute('visible', value);
           }
           
            
-           console.log = function() {}
            
       
       });
