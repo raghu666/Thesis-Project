@@ -190,13 +190,13 @@
       
       <a-entity id="toggle">
           
-      <a-entity mixin="legends" id="legmarital" material="shader:flat; src:assets/legends_marital_1.png;" position="2.5 -3.5 -2" rotation="-45 90 0">
+      <a-entity mixin="legends" id="legend_marital" material="shader:flat; src:assets/legends_marital_1.png;" position="2.5 -3.5 -2" rotation="-45 90 0">
       </a-entity>
           
-      <a-entity mixin="legends" id="legjob" material="shader:flat; src:assets/legends_job_1.png;" position="2.5 -3.5 -6" rotation="-45 90 0" visible="false">
+      <a-entity mixin="legends" id="legend_job" material="shader:flat; src:assets/legends_job_1.png;" position="2.5 -3.5 -6" rotation="-45 90 0" visible="false">
       </a-entity>
           
-      <a-entity mixin="legends" id="legedu" material="shader:flat; src:assets/legends_edu_1.png;" position="2.5 -3.5 -10" rotation="-45 90 0" visible="false">
+      <a-entity mixin="legends" id="legend_edu" material="shader:flat; src:assets/legends_edu_1.png;" position="2.5 -3.5 -10" rotation="-45 90 0" visible="false">
       </a-entity>
       
       
@@ -389,9 +389,9 @@
          // console.log("Total points"+entity.selectAll('a-box').size());
 
           
-          var legmarital = document.querySelector('#legmarital');
-          var legjob = document.querySelector('#legjob');
-          var legedu = document.querySelector('#legedu');
+          var legendMarital = document.querySelector('#legend_marital');
+          var legendJob = document.querySelector('#legend_job');
+          var legendEdu = document.querySelector('#legend_edu');
           
           var jobtype = document.querySelector('#jobtype');
           var edu = document.querySelector('#education');
@@ -402,10 +402,10 @@
               entity.selectAll('a-box').attr('material',function(d){
                   return "color :" + color(d.job);
               })
-              
-             legmarital.setAttribute('visible','false');
-             legjob.setAttribute('visible','true');
-             legedu.setAttribute('visible','false');
+
+              legendMarital.setAttribute('visible','false');
+              legendJob.setAttribute('visible','true');
+              legendEdu.setAttribute('visible','false');
               
               jobtype.setAttribute('material','src','assets/jobtype_1_selected.png');
               edu.setAttribute('material','src','assets/education_1.png');
@@ -419,9 +419,9 @@
                   return "color :" + colore(d.education);
               })
               
-             legmarital.setAttribute('visible','false');
-             legjob.setAttribute('visible','false');
-             legedu.setAttribute('visible','true');
+              legendMarital.setAttribute('visible','false');
+              legendJob.setAttribute('visible','false');
+              legendEdu.setAttribute('visible','true');
               
               
               jobtype.setAttribute('material','src','assets/jobtype_1.png');
@@ -437,9 +437,9 @@
                   return "color :" + colorm(d.marital);
               })
               
-             legmarital.setAttribute('visible','true');
-             legjob.setAttribute('visible','false');
-             legedu.setAttribute('visible','false');
+              legendMarital.setAttribute('visible','true');
+              legendJob.setAttribute('visible','false');
+              legendEdu.setAttribute('visible','false');
               
               
               jobtype.setAttribute('material','src','assets/jobtype_1.png');
