@@ -24,11 +24,11 @@
                     raycaster="objects: .clickable"
                     sound="on : click; src:https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
             </a-cursor>
-            <a-entity mixin="details" scale="0 0 0"  id="test" position="0 0 -2" visible="false" material="shader:flat; src:UI/details.png; opacity:0.8">
+            <a-entity mixin="details" scale="0 0 0"  id="test" position="0 0 -2" visible="false" material="shader:flat; src:assets/details.png; opacity:0.8">
                 <a-animation attribute="scale" begin="fade" to="1 1 1" easing="ease-in-out">
                 </a-animation>
             </a-entity> 
-         <!--   <a-entity mixin="legends" material="shader:flat; src:UI/legends_edu.png;" position="-5 -2 -4" rotation="0 0 0" id="legends_edu" visible="false">
+         <!--   <a-entity mixin="legends" material="shader:flat; src:assets/legends_edu.png;" position="-5 -2 -4" rotation="0 0 0" id="legends_edu" visible="false">
             </a-entity> -->
         </a-entity>
       
@@ -171,45 +171,45 @@
       
       
       
-      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:UI/marital_1_selected.png;" position="4.3 -4.5 -2" rotation="-45 90 0"  id="marital"
+      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:assets/marital_1_selected.png;" position="4.3 -4.5 -2" rotation="-45 90 0"  id="marital"
                   event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
                   event-set__2="_event: mouseleave; scale: 1 1 1">
       </a-entity>
       
       
-      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:UI/jobtype_1.png;" position="4.3 -4.5 -6" rotation="-45 90 0" id="jobtype"
+      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:assets/jobtype_1.png;" position="4.3 -4.5 -6" rotation="-45 90 0" id="jobtype"
                   event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
                   event-set__2="_event: mouseleave; scale: 1 1 1">
       </a-entity>
       
       
-      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:UI/education_1.png;" position="4.3 -4.5 -10" rotation="-45 90 0" id="education"
+      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:assets/education_1.png;" position="4.3 -4.5 -10" rotation="-45 90 0" id="education"
                   event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
                   event-set__2="_event: mouseleave; scale: 1 1 1">
       </a-entity>
       
       <a-entity id="toggle">
           
-      <a-entity mixin="legends" id="legmarital" material="shader:flat; src:UI/legends_marital_1.png;" position="2.5 -3.5 -2" rotation="-45 90 0">
+      <a-entity mixin="legends" id="legmarital" material="shader:flat; src:assets/legends_marital_1.png;" position="2.5 -3.5 -2" rotation="-45 90 0">
       </a-entity>
           
-      <a-entity mixin="legends" id="legjob" material="shader:flat; src:UI/legends_job_1.png;" position="2.5 -3.5 -6" rotation="-45 90 0" visible="false">
+      <a-entity mixin="legends" id="legjob" material="shader:flat; src:assets/legends_job_1.png;" position="2.5 -3.5 -6" rotation="-45 90 0" visible="false">
       </a-entity>
           
-      <a-entity mixin="legends" id="legedu" material="shader:flat; src:UI/legends_edu_1.png;" position="2.5 -3.5 -10" rotation="-45 90 0" visible="false">
+      <a-entity mixin="legends" id="legedu" material="shader:flat; src:assets/legends_edu_1.png;" position="2.5 -3.5 -10" rotation="-45 90 0" visible="false">
       </a-entity>
       
       
-      <a-entity mixin="legends" material="shader:flat; src:UI/About_viz_1.png;" position="-10 -3 4" rotation="-45 0 0">
+      <a-entity mixin="legends" material="shader:flat; src:assets/About_viz_1.png;" position="-10 -3 4" rotation="-45 0 0">
       </a-entity>
       
-      <a-entity mixin="legends" material="shader:flat; src:UI/legends_1.png;" position="-6 -3 4" rotation="-45 0 0">
+      <a-entity mixin="legends" material="shader:flat; src:assets/legends_1.png;" position="-6 -3 4" rotation="-45 0 0">
       </a-entity>
       
-      <a-entity mixin="legends" material="shader:flat; src:UI/description_1.png;" position="-2 -3 4" rotation="-45 0 0">
+      <a-entity mixin="legends" material="shader:flat; src:assets/description_1.png;" position="-2 -3 4" rotation="-45 0 0">
       </a-entity> 
           
-        <a-entity mixin="legends" material="shader:flat; src:UI/instruct.png;" position="1.5 -3 2.5" rotation="-50 45 0">
+        <a-entity mixin="legends" material="shader:flat; src:assets/instruct.png;" position="1.5 -3 2.5" rotation="-50 45 0">
       </a-entity>  
           
       </a-entity>
@@ -407,9 +407,9 @@
              legjob.setAttribute('visible','true');
              legedu.setAttribute('visible','false');
               
-              jobtype.setAttribute('material','src','UI/jobtype_1_selected.png');
-              edu.setAttribute('material','src','UI/education_1.png');
-              marital.setAttribute('material','src','UI/marital_1.png');
+              jobtype.setAttribute('material','src','assets/jobtype_1_selected.png');
+              edu.setAttribute('material','src','assets/education_1.png');
+              marital.setAttribute('material','src','assets/marital_1.png');
               
           })
           
@@ -424,9 +424,9 @@
              legedu.setAttribute('visible','true');
               
               
-              jobtype.setAttribute('material','src','UI/jobtype_1.png');
-              edu.setAttribute('material','src','UI/education_1_selected.png');
-              marital.setAttribute('material','src','UI/marital_1.png');
+              jobtype.setAttribute('material','src','assets/jobtype_1.png');
+              edu.setAttribute('material','src','assets/education_1_selected.png');
+              marital.setAttribute('material','src','assets/marital_1.png');
               
           })
           
@@ -442,9 +442,9 @@
              legedu.setAttribute('visible','false');
               
               
-              jobtype.setAttribute('material','src','UI/jobtype_1.png');
-              edu.setAttribute('material','src','UI/education_1.png');
-              marital.setAttribute('material','src','UI/marital_1_selected.png');
+              jobtype.setAttribute('material','src','assets/jobtype_1.png');
+              edu.setAttribute('material','src','assets/education_1.png');
+              marital.setAttribute('material','src','assets/marital_1_selected.png');
               
           })
         
