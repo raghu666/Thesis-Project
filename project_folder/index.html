@@ -1,217 +1,122 @@
 <!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://rawgit.com/andreasplesch/aframe-meshline-component/master/dist/aframe-meshline-component.min.js"></script>
-    <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
-    <script src="aframe-gamepad-controls-master/aframe-gamepad-controls-master/dist/aframe-gamepad-controls.js"></script>
-</head>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/d3-color.v1.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+        <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+        <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
+        <script src="aframe-gamepad-controls-master/aframe-gamepad-controls-master/dist/aframe-gamepad-controls.js"></script>
+    </head>
 <body>
-  <a-scene>
-<!-- Camera with customized cursor -->
-      <a-light color="#989898" position="0 5 0" type="ambient">
-      </a-light>
-    	<a-entity camera gamepad-controls look-controls wasd-controls="acceleration: 100" position="3 0 4" id="cam">
+    <a-scene>
+    <!-- Camera with customized cursor -->
+    <a-light color="#989898" position="0 5 0" type="ambient"></a-light>
+    <a-entity camera gamepad-controls look-controls wasd-controls="acceleration: 100" position="3 0 4" id="cam">
             <a-cursor
                     event-set__1="_event: mouseenter; color: yellow"
                     event-set__2="_event: mouseleave; color: black"
                     fuse="true"
                     raycaster="objects: .clickable"
-                    sound="on : click; src:https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
+                    sound="on: click; src:https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg">
             </a-cursor>
-            <a-entity mixin="details" scale="0 0 0"  id="test" position="0 0 -2" visible="false" material="shader:flat; src:assets/details.png; opacity:0.8">
-                <a-animation attribute="scale" begin="fade" to="1 1 1" easing="ease-in-out">
-                </a-animation>
-            </a-entity> 
-         <!--   <a-entity mixin="legends" material="shader:flat; src:assets/legends_edu.png;" position="-5 -2 -4" rotation="0 0 0" id="legends_edu" visible="false">
-            </a-entity> -->
-        </a-entity>
-      
-    	<a-entity light="type: point; color: #989898; intensity: 0.4" position="0 3 0">
-        </a-entity>
-      
-<!-- Sky -->
-      
-      <a-sky color="#695c5c">
-      </a-sky>
-
-<!--  Makes the entity fully transparent. only possible with Material component's attribute visible equals False -->
-      
-    <a-entity id="main"  geometry="primitive : box; depth : 8; height : 8; width : 8" position="-10 -1 -10" scale="0.5 0.5 0.5"  material="visible : false;">
-        <a-entity class="clickable" id="sub">
-<!-- Label for X, Y, Z axis -->
-        <a-entity  text="value : Age; align : center; width : 70; color: #000; font:roboto; side : double" position="9 -3 -8">
-        </a-entity>
-        
-        <a-entity  text="value : Duration; align : center; width : 70; color: #000; font:roboto; side : double" position="-11 10 -8" rotation="0 20 90">
+        <a-entity mixin="details" scale="0 0 0"  id="test" position="0 0 -2" visible="false" material="shade: flat; src: assets/details.png; opacity:0.8">
+            <a-animation attribute="scale" begin="fade" to="1 1 1" easing="ease-in-out"></a-animation>
         </a-entity> 
-        
-        <a-entity  text="value : Months; align : center; width : 70; color: #000; font:roboto; side : double" position="-8 -3 12" rotation="0 90 0">
-        </a-entity>
-        
-<!-- For z tick marks -->
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 -7.5, -8 -7 -7.5; color : #000">
-            <a-entity  text="value : July; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 -6.8" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 -4.056, -8 -7 -4.056; color : #000">
-            <a-entity  text="value : March; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 -3.1" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 -0.612, -8 -7 -0.612; color : #000">
-            <a-entity  text="value : August; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 0.5" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 2.832, -8 -7 2.832; color : #000">
-            <a-entity  text="value : September; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 4.3" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 6.276, -8 -7 6.276; color : #000">
-            <a-entity  text="value : April; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 7" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 9.72, -8 -7 9.72; color : #000">
-            <a-entity  text="value : November; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 11.2" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 13.164, -8 -7 13.164; color : #000">
-            <a-entity  text="value : June; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 14.1" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 16.608, -8 -7 16.608; color : #000">
-            <a-entity  text="value : October; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 17.8" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 20.052, -8 -7 20.052; color : #000">
-            <a-entity  text="value : May; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 20.8" rotation="0 90 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -9 23.496, -8 -7 23.496; color : #000">
-            <a-entity  text="value : December; align : center; width : 12; color: #000; font:roboto; side : double" position="-8 -7.5 25" rotation="0 90 0"></a-entity>
-        </a-entity>
+    </a-entity>
+    <a-entity light="type: point; color: #989898; intensity: 0.4" position="0 3 0"></a-entity>
+    <!-- Sky -->
+    <a-sky color="#695c5c"></a-sky>
+    <!--  Makes the entity fully transparent. only possible with Material component's attribute visible equals False -->
+    <a-entity id="main"  geometry="primitive: box; depth: 8; height: 8; width: 8" position="-10 -1 -10" scale="0.5 0.5 0.5"  material="visible: false;">
+        <a-entity class="clickable" id="sub">
+        <!-- Label for X, Y, Z axis -->
+            <a-entity  text="value: Age; align: center; width: 70; color: #000; font: roboto; side: double" position="9 -3 -8"></a-entity>
+            <a-entity  text="value: Duration; align: center; width: 70; color: #000; font: roboto; side: double" position="-11 10 -8" rotation="0 20 90"></a-entity> 
+            <a-entity  text="value: Months; align: center; width: 70; color: #000; font: roboto; side: double" position="-8 -3 12" rotation="0 90 0"></a-entity>
+        <!-- For z tick marks -->
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: July; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 -6.8" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: March; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 -3.1" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: August; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 0.5" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: September; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 4.3" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: April; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 7" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: November; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 11.2" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: June; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 14.1" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: October; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 17.8" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: May; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 20.8" rotation="0 90 0"></a-entity>
+            <a-entity line="start: 0 0 8, end: 8 0 8; color: #000" text="value: December; align: center; width: 12; color: #000; font: roboto; side: double" position="-8 -7.5 25" rotation="0 90 0"></a-entity>
+        <!-- For x tick marks -->
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 18; align: center; width: 12; color: #000; font: roboto; side: double" position="-7 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 26; align: center; width: 12; color: #000; font: roboto; side: double" position="-3.5 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 34; align: center; width: 12; color: #000; font: roboto; side: double" position="-0.1 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 42; align: center; width: 12; color: #000; font: roboto; side: double" position="3.3 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 50; align: center; width: 12; color: #000; font: roboto; side: double" position="6.8 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 58; align: center; width: 12; color: #000; font: roboto; side: double" position="10.2 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 64; align: center; width: 12; color: #000; font: roboto; side: double" position="13.7 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 72; align: center; width: 12; color: #000; font: roboto; side: double" position="17.1 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 80; align: center; width: 12; color: #000; font: roboto; side: double" position="20.5 -7.5 -8"></a-entity>
+            <a-entity line="start: 0 0 8, end: 0 0 8; color: #000" text="value: 88; align: center; width: 12; color: #000; font: roboto; side: double" position="24 -7.5 -8"></a-entity>
+        <!-- For y tick marks -->
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 0; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 -6.5 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 405; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 -3.5 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 810; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 -0.2 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 1215; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 3.2 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 1620; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 6.7 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 2025; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 10.2 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 2430; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 13.5 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 2835; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 17 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 3240; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 20.5 -8" rotation="0 45 0"></a-entity>
+            <a-entity line="start: 0 1 8, end: 0 8 -8; color: #000" text="value: 3645; align: center; width: 15; color: #000; font: roboto; side: double" position="-6.9 23.9 -8" rotation="0 45 0"></a-entity>
+        </a-entity> 
+    </a-entity>
 
-<!-- For x tick marks -->
-        <a-entity  meshline="lineWidth : 5; path : -7.5 -9 -8, -7.5 -7 -8; color : #000">
-            <a-entity  text="value : 18; align : center; width : 12; color: #000; font:roboto; side : double" position="-7 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -4.056 -9 -8, -4.056 -7 -8; color : #000">
-            <a-entity  text="value : 26; align : center; width : 12; color: #000; font:roboto; side : double" position="-3.5 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -0.612 -9 -8, -0.612 -7 -8; color : #000">
-            <a-entity  text="value : 34; align : center; width : 12; color: #000; font:roboto; side : double" position="-0.1 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : 2.832 -9 -8, 2.832 -7 -8; color : #000">
-            <a-entity  text="value : 42; align : center; width : 12; color: #000; font:roboto; side : double" position="3.3 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : 6.276 -9 -8, 6.276 -7 -8; color : #000">
-            <a-entity  text="value : 50; align : center; width : 12; color: #000; font:roboto; side : double" position="6.8 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : 9.72 -9 -8, 9.72 -7 -8; color : #000">
-            <a-entity  text="value : 58; align : center; width : 12; color: #000; font:roboto; side : double" position="10.2 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : 13.164 -9 -8, 13.164 -7 -8; color : #000">
-            <a-entity  text="value : 64; align : center; width : 12; color: #000; font:roboto; side : double" position="13.7 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : 16.608 -9 -8, 16.608 -7 -8; color : #000">
-            <a-entity  text="value : 72; align : center; width : 12; color: #000; font:roboto; side : double" position="17.1 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : 20.052 -9 -8, 20.052 -7 -8; color : #000">
-            <a-entity  text="value : 80; align : center; width : 12; color: #000; font:roboto; side : double" position="20.5 -7.5 -8"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : 23.496 -9 -8, 23.496 -7 -8; color : #000">
-            <a-entity  text="value : 88; align : center; width : 12; color: #000; font:roboto; side : double" position="24 -7.5 -8"></a-entity>
-        </a-entity>
-        
-<!-- For y tick marks -->
-        <a-entity  meshline="lineWidth : 5; path : -8 -7 -8, -7 -7 -8; color : #000">
-            <a-entity  text="value : 0; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 -6.5 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 -4.056 -8, -7 -4.056 -8; color : #000">
-            <a-entity  text="value : 405; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 -3.5 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-         <a-entity  meshline="lineWidth : 5; path : -8 -0.612 -8, -7 -0.612 -8; color : #000">
-            <a-entity  text="value : 810; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 -0.2 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 2.832 -8, -7 2.832 -8; color : #000">
-            <a-entity  text="value : 1215; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 3.2 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-         <a-entity  meshline="lineWidth : 5; path : -8 6.276 -8, -7 6.276 -8; color : #000">
-            <a-entity  text="value : 1620; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 6.7 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 9.72 -8, -7 9.72 -8; color : #000">
-            <a-entity  text="value : 2025; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 10.2 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 13.164 -8, -7 13.164 -8; color : #000">
-            <a-entity  text="value : 2430; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 13.5 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-         <a-entity  meshline="lineWidth : 5; path : -8 16.608 -8, -7 16.608 -8; color : #000">
-            <a-entity  text="value : 2835; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 17 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 20.052 -8, -7 20.052 -8; color : #000">
-            <a-entity  text="value : 3240; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 20.5 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
-        <a-entity  meshline="lineWidth : 5; path : -8 23.496 -8, -7 23.496 -8; color : #000">
-            <a-entity  text="value : 3645; align : center; width : 15; color: #000; font:roboto; side : double" position="-6.9 23.9 -8" rotation="0 45 0"></a-entity>
-        </a-entity>
+    <a-assets>
+        <a-mixin id="details" geometry="primitive: plane; height: 2; width: 2.5;"></a-mixin>    
+        <a-mixin id="planes" geometry="primitive: plane; height: 50; width: 50;" material="color: #ffffff"></a-mixin>
+        <a-mixin id="planeclicks" geometry="primitive: plane; height: 0.8; width: 2.5;"></a-mixin>
+        <a-mixin id="legends" geometry="primitive: plane; height: 3; width: 3;"></a-mixin>
+    </a-assets>
 
-      </a-entity> 
-      </a-entity>
-      
-      <a-assets>
-          
-      <a-mixin id="details" geometry="primitive: plane; height: 2; width: 2.5;"></a-mixin>    
-      <a-mixin id="planes" geometry="primitive: plane; height: 50; width: 50;" material="color: #ffffff"></a-mixin>
-      <a-mixin id="planeclicks" geometry="primitive: plane; height: 0.8; width: 2.5;"></a-mixin>
-      <a-mixin id="legends" geometry="primitive: plane; height: 3; width: 3;"></a-mixin>
-      
-      </a-assets>
-      
-      <a-entity mixin="planes"  position="-5 -5 0" rotation="-90 90 0"></a-entity>
-      <a-entity mixin="planes"  position="-5 25 0" rotation="90 0 0"></a-entity> 
-      <a-entity mixin="planes"  position="-5 2 -25" rotation="0 0 0"></a-entity>
-      <a-entity mixin="planes"  position="-5 2 25" rotation="0 180 0"></a-entity>
-      <a-entity mixin="planes"  position="-25 2 0" rotation="0 90 0"></a-entity>
-      <a-entity mixin="planes"  position="20 2 0" rotation="0 -90 0"></a-entity> 
-      
-      
-      
-      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:assets/marital_1_selected.png;" position="4.3 -4.5 -2" rotation="-45 90 0"  id="marital"
-                  event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
-                  event-set__2="_event: mouseleave; scale: 1 1 1">
-      </a-entity>
-      
-      
-      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:assets/jobtype_1.png;" position="4.3 -4.5 -6" rotation="-45 90 0" id="jobtype"
-                  event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
-                  event-set__2="_event: mouseleave; scale: 1 1 1">
-      </a-entity>
-      
-      
-      <a-entity class="clickable" mixin="planeclicks" material="shader:flat; src:assets/education_1.png;" position="4.3 -4.5 -10" rotation="-45 90 0" id="education"
-                  event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
-                  event-set__2="_event: mouseleave; scale: 1 1 1">
-      </a-entity>
-      
-      <a-entity id="toggle">
-          
-      <a-entity mixin="legends" id="legend_marital" material="shader:flat; src:assets/legends_marital_1.png;" position="2.5 -3.5 -2" rotation="-45 90 0">
-      </a-entity>
-          
-      <a-entity mixin="legends" id="legend_job" material="shader:flat; src:assets/legends_job_1.png;" position="2.5 -3.5 -6" rotation="-45 90 0" visible="false">
-      </a-entity>
-          
-      <a-entity mixin="legends" id="legend_edu" material="shader:flat; src:assets/legends_edu_1.png;" position="2.5 -3.5 -10" rotation="-45 90 0" visible="false">
-      </a-entity>
-      
-      
-      <a-entity mixin="legends" material="shader:flat; src:assets/About_viz_1.png;" position="-10 -3 4" rotation="-45 0 0">
-      </a-entity>
-      
-      <a-entity mixin="legends" material="shader:flat; src:assets/legends_1.png;" position="-6 -3 4" rotation="-45 0 0">
-      </a-entity>
-      
-      <a-entity mixin="legends" material="shader:flat; src:assets/description_1.png;" position="-2 -3 4" rotation="-45 0 0">
-      </a-entity> 
-          
-        <a-entity mixin="legends" material="shader:flat; src:assets/instruct.png;" position="1.5 -3 2.5" rotation="-50 45 0">
-      </a-entity>  
-          
-      </a-entity>
+    <a-entity mixin="planes"  position="-5 -5 0" rotation="-90 90 0"></a-entity>
+    <a-entity mixin="planes"  position="-5 25 0" rotation="90 0 0"></a-entity> 
+    <a-entity mixin="planes"  position="-5 2 -25" rotation="0 0 0"></a-entity>
+    <a-entity mixin="planes"  position="-5 2 25" rotation="0 180 0"></a-entity>
+    <a-entity mixin="planes"  position="-25 2 0" rotation="0 90 0"></a-entity>
+    <a-entity mixin="planes"  position="20 2 0" rotation="0 -90 0"></a-entity> 
+
+    <a-entity class="clickable" mixin="planeclicks" material="shade: flat; src: assets/marital_1_selected.png;" position="4.3 -4.5 -2" rotation="-45 90 0"  id="marital"
+                event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
+                event-set__2="_event: mouseleave; scale: 1 1 1">
+    </a-entity>
+    <a-entity class="clickable" mixin="planeclicks" material="shade: flat; src: assets/jobtype_1.png;" position="4.3 -4.5 -6" rotation="-45 90 0" id="jobtype"
+                event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
+                event-set__2="_event: mouseleave; scale: 1 1 1">
+    </a-entity>
+    <a-entity class="clickable" mixin="planeclicks" material="shade: flat; src: assets/education_1.png;" position="4.3 -4.5 -10" rotation="-45 90 0" id="education"
+                event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2"
+                event-set__2="_event: mouseleave; scale: 1 1 1">
+    </a-entity>
+
+    <a-entity id="toggle">
+        <a-entity mixin="legends" id="legmarital" material="shade: flat; src: assets/legends_marital_1.png;" position="2.5 -3.5 -2" rotation="-45 90 0">
+        </a-entity>
+        <a-entity mixin="legends" id="legjob" material="shade: flat; src: assets/legends_job_1.png;" position="2.5 -3.5 -6" rotation="-45 90 0" visible="false">
+        </a-entity>
+        <a-entity mixin="legends" id="legedu" material="shade: flat; src: assets/legends_edu_1.png;" position="2.5 -3.5 -10" rotation="-45 90 0" visible="false">
+        </a-entity>
+        <a-entity mixin="legends" material="shade: flat; src: assets/About_viz_1.png;" position="-10 -3 4" rotation="-45 0 0">
+        </a-entity>
+        <a-entity mixin="legends" material="shade: flat; src: assets/legends_1.png;" position="-6 -3 4" rotation="-45 0 0">
+        </a-entity>
+        <a-entity mixin="legends" material="shade: flat; src: assets/description_1.png;" position="-2 -3 4" rotation="-45 0 0">
+        </a-entity> 
+        <a-entity mixin="legends" material="shade: flat; src: assets/instruct.png;" position="1.5 -3 2.5" rotation="-50 45 0">
+        </a-entity>  
+    </a-entity>
     </a-scene>
     <script src="./index.js"></script>
 </body>
+</html>
+
